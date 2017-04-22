@@ -11,4 +11,4 @@ RUN mypy .
 ADD tests tests
 RUN flake8 tests
 RUN mypy tests
-RUN python -m unittest
+RUN python -m unittest discover -f
