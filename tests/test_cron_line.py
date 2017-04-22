@@ -23,6 +23,13 @@ class TestCronLine(unittest.TestCase):
         cl = CronLine(line)
         self.assertEqual(description, cl.describe())
 
+    def test_describe_interpolates_command(self) -> None:
+        line = "*  *   *  *  * other command to run"
+        description = "Run `other command to run` on every minute of every" \
+            " hour of every day of every month on any day of the week"
+        cl = CronLine(line)
+        self.assertEqual(description, cl.describe())
+
 
 if __name__ == '__main__':
     unittest.main()
