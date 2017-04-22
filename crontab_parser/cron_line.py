@@ -9,6 +9,9 @@ class CronLine(object):
         self.day_of_week = day_of_week
         self.command = command
 
+    def describe_command(self) -> str:
+        return ' '.join(self.command)
+
     def describe(self) -> str:
-        return f"Run `{' '.join(self.command)}` on every minute of every" \
+        return f"Run `{self.describe_command()}` on every minute of every" \
             " hour of every day of every month on any day of the week"

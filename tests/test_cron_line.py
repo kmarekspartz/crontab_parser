@@ -30,6 +30,12 @@ class TestCronLine(unittest.TestCase):
         cl = CronLine(line)
         self.assertEqual(description, cl.describe())
 
+    def test_describe_command_normalizes_spaces(self) -> None:
+        line = "*  *   *  *  * other     command   to     run"
+        command_description = "other command to run"
+        cl = CronLine(line)
+        self.assertEqual(command_description, cl.describe_command())
+
 
 if __name__ == '__main__':
     unittest.main()
