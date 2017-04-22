@@ -8,7 +8,8 @@ RUN pip install -r requirements.txt
 ADD crontab_parser crontab_parser
 RUN flake8 .
 RUN mypy .
-ADD tests tests
+ADD tests/*.py tests/
 RUN flake8 tests
 RUN mypy tests
+ADD tests/examples.json tests
 RUN python -m unittest discover -f

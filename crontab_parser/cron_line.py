@@ -17,7 +17,10 @@ class CronLine(object):
 
     time_descriptions = {
         '*': 'every',
-        '1': 'the first'
+        '1': 'the first',
+        '45': 'not a good approach',
+        '23': 'not at all',
+        '0': 'zero points'
     }
 
     def describe_time(self, field, unit) -> str:
