@@ -1,4 +1,7 @@
+import json
 import unittest
+
+from typing import Dict
 
 from crontab_parser.cron_line import CronLine
 
@@ -16,26 +19,12 @@ class TestCronLine(unittest.TestCase):
         self.assertEqual(day_of_week, cl.day_of_week)
         self.assertEqual(command, cl.command)
 
-    example_descriptions = [
-        (
-            "Run `command to run` on every minute of every hour of"
-            " every day of every month on any day of the week",
-            "*  *   *  *  * command to run"
-        ),
-        (
-            "Run `other command to run` on every minute of every"
-            " hour of every day of every month on any day of the week",
-            "*  *   *  *  * other     command   to     run"
-        ),
-        (
-            "Run `command to run` on the first minute of the first"
-            " hour of the first day of January on Mondays",
-            "1  1   1  1  1 command to run"
-        )
-    ]
+    def example_descriptions(self) -> Dict[str, str]:
+        with open('tests/examples.json') as f:
+            return json.load(f)
 
     def test_example_descriptions(self) -> None:
-        for description, line in self.example_descriptions:
+        for description, line in self.example_descriptions().items():
             self.assertDescription(description, line)
 
     def assertDescription(self, description: str, line: str) -> None:
