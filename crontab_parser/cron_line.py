@@ -39,6 +39,13 @@ class CronLine(object):
         except ValueError:
             return 'every month'
 
+    def describe_day_of_week(self) -> str:
+        try:
+            day_of_week_int = int(self.day_of_week) % 7
+            return calendar.day_name[day_of_week_int - 1] + 's'
+        except ValueError:
+            return 'any day of the week'
+
     def describe(self) -> str:
         return ''.join([
             "Run `",
@@ -51,5 +58,6 @@ class CronLine(object):
             self.describe_day_of_month(),
             " of ",
             self.describe_month(),
-            " on any day of the week"
+            " on ",
+            self.describe_day_of_week()
         ])

@@ -31,9 +31,9 @@ class TestCronLine(unittest.TestCase):
         self.assertEqual(description, cl.describe())
 
     def test_describe_firsts(self) -> None:
-        line = "1  1   1  1  * command to run"
+        line = "1  1   1  1  1 command to run"
         description = "Run `command to run` on the first minute of the first" \
-            " hour of the first day of January on any day of the week"
+            " hour of the first day of January on Mondays"
         cl = CronLine(line)
         self.assertEqual(description, cl.describe())
 
