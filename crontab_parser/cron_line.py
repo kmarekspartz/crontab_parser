@@ -8,3 +8,7 @@ class CronLine(object):
         self.month = month
         self.day_of_week = day_of_week
         self.command = command
+
+    def describe(self) -> str:
+        return "Run `command to run` on every minute of every hour of" \
+            " every day of every month on any day of the week"

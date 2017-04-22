@@ -16,6 +16,13 @@ class TestCronLine(unittest.TestCase):
         self.assertEqual(day_of_week, cl.day_of_week)
         self.assertEqual(command, cl.command)
 
+    def test_describe_every(self) -> None:
+        line = "*  *   *  *  * command to run"
+        description = "Run `command to run` on every minute of every hour of" \
+            " every day of every month on any day of the week"
+        cl = CronLine(line)
+        self.assertEqual(description, cl.describe())
+
 
 if __name__ == '__main__':
     unittest.main()
