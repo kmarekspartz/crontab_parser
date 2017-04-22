@@ -1,5 +1,4 @@
 {
-    "Run `command to run` on the first minute of the first hour of the first day of January on Mondays": "1  1   1  1  1 command to run",
-    "Run `other command to run` on every minute of every hour of every day of every month on any day of the week": "*  *   *  *  * other     command   to     run",
-    "Run `command to run` on every minute of every hour of every day of every month on any day of the week": "*  *   *  *  * command to run"
+    "Run `command to run` at 01:01 the first minute of the first hour of the first day of January on Mondays": "1  1   1  1  1 command to run",
+    "Run `other command to run` on every minute of every hour of every day of every month on any day of the week": "*  *   *  *  *  other     command   to     run",
 }
