@@ -1,3 +1,6 @@
+import calendar
+
+
 class CronLine(object):
     def __init__(self, line: str) -> None:
         split_line = line.split()
@@ -26,6 +29,16 @@ class CronLine(object):
     def describe_hour(self) -> str:
         return self.describe_time(self.hour, 'hour')
 
+    def describe_day_of_month(self) -> str:
+        return self.describe_time(self.day_of_month, 'day')
+
+    def describe_month(self) -> str:
+        try:
+            month_int = int(self.month)
+            return calendar.month_name[month_int]
+        except ValueError:
+            return 'every month'
+
     def describe(self) -> str:
         return ''.join([
             "Run `",
@@ -34,5 +47,9 @@ class CronLine(object):
             self.describe_minute(),
             " of ",
             self.describe_hour(),
-            " of every day of every month on any day of the week"
+            " of ",
+            self.describe_day_of_month(),
+            " of ",
+            self.describe_month(),
+            " on any day of the week"
         ])
