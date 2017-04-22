@@ -12,6 +12,19 @@ class CronLine(object):
     def describe_command(self) -> str:
         return ' '.join(self.command)
 
+    def describe_minute(self) -> str:
+        if self.minute == '*':
+            return 'every minute'
+        if self.minute == '1':
+            return 'the first minute'
+        else:
+            return 'gah!'  # FIXME
+
     def describe(self) -> str:
-        return f"Run `{self.describe_command()}` on every minute of every" \
-            " hour of every day of every month on any day of the week"
+        return ''.join([
+            "Run `",
+            self.describe_command(),
+            "` on ",
+            self.describe_minute(),
+            " of every hour of every day of every month on any day of the week"
+        ])

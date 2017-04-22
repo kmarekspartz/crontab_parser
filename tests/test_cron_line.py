@@ -23,18 +23,19 @@ class TestCronLine(unittest.TestCase):
         cl = CronLine(line)
         self.assertEqual(description, cl.describe())
 
-    def test_describe_interpolates_command(self) -> None:
-        line = "*  *   *  *  * other command to run"
+    def test_describe_interpolates_and_normalizes_command(self) -> None:
+        line = "*  *   *  *  * other     command   to     run"
         description = "Run `other command to run` on every minute of every" \
             " hour of every day of every month on any day of the week"
         cl = CronLine(line)
         self.assertEqual(description, cl.describe())
 
-    def test_describe_command_normalizes_spaces(self) -> None:
-        line = "*  *   *  *  * other     command   to     run"
-        command_description = "other command to run"
+    def test_describe_first_minute(self) -> None:
+        line = "1  *   *  *  * command to run"
+        description = "Run `command to run` on the first minute of every" \
+            " hour of every day of every month on any day of the week"
         cl = CronLine(line)
-        self.assertEqual(command_description, cl.describe_command())
+        self.assertEqual(description, cl.describe())
 
 
 if __name__ == '__main__':
