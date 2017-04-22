@@ -16,26 +16,27 @@ class TestCronLine(unittest.TestCase):
         self.assertEqual(day_of_week, cl.day_of_week)
         self.assertEqual(command, cl.command)
 
-    def test_describe_every(self) -> None:
-        self.assertDescription(
+    example_descriptions = [
+        (
             "Run `command to run` on every minute of every hour of"
             " every day of every month on any day of the week",
             "*  *   *  *  * command to run"
-        )
-
-    def test_describe_interpolates_and_normalizes_command(self) -> None:
-        self.assertDescription(
+        ),
+        (
             "Run `other command to run` on every minute of every"
             " hour of every day of every month on any day of the week",
             "*  *   *  *  * other     command   to     run"
-        )
-
-    def test_describe_firsts(self) -> None:
-        self.assertDescription(
+        ),
+        (
             "Run `command to run` on the first minute of the first"
             " hour of the first day of January on Mondays",
             "1  1   1  1  1 command to run"
         )
+    ]
+
+    def test_example_descriptions(self) -> None:
+        for description, line in self.example_descriptions:
+            self.assertDescription(description, line)
 
     def assertDescription(self, description: str, line: str) -> None:
         cl = CronLine(line)
