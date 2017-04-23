@@ -49,6 +49,27 @@ class CronLine(object):
         except ValueError:
             return 'any day of the week'
 
+    def is_every_day(self) -> bool:
+        return all([
+            self.day_of_month == '*',
+            self.month == '*',
+            self.day_of_week == '*'
+        ])
+
+    def describe_days_and_months(self) -> str:
+        if self.is_every_day():
+            return ''
+        if self.day_of_month == '*' and self.month == '*':
+            return " on " + self.describe_day_of_week()
+        return ''.join([
+            " of ",
+            self.describe_day_of_month(),
+            " of ",
+            self.describe_month(),
+            " on ",
+            self.describe_day_of_week()
+        ])
+
     def describe(self) -> str:
         return ''.join([
             "Run `",
@@ -57,10 +78,5 @@ class CronLine(object):
             self.describe_minute(),
             " of ",
             self.describe_hour(),
-            " of ",
-            self.describe_day_of_month(),
-            " of ",
-            self.describe_month(),
-            " on ",
-            self.describe_day_of_week()
+            self.describe_days_and_months()
         ])
