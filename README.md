@@ -2,7 +2,7 @@
 
 A crontab parser inspired by [https://crontab.guru](crontab.guru).
 
-![Status at Travis CI](https://travis-ci.org/zeckalpha/crontab_parser.svg?branch=master)
+[![Build Status](https://travis-ci.org/zeckalpha/crontab_parser.svg?branch=master)](https://travis-ci.org/zeckalpha/crontab_parser)
 
 
 ## Building
