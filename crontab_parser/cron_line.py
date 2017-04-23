@@ -96,7 +96,7 @@ class CronLine(object):
             return ''.join([
                'at ',
                self.describe_minute(),
-               ' ',
+               ' of ',
                self.describe_hour()
             ])
         return 'at ' + time.strftime(
