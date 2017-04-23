@@ -1,6 +1,5 @@
 FROM python:3.6
 WORKDIR /crontab_parser
-ADD *.md ./
 ADD build-requirements.txt .
 RUN pip install -r build-requirements.txt
 ADD requirements.txt .
@@ -13,3 +12,5 @@ RUN flake8 tests
 RUN mypy tests
 ADD tests/examples.json tests
 RUN python -m unittest discover -f
+ADD *.md ./
+CMD python -m crontab_parser.main
