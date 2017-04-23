@@ -1,4 +1,5 @@
 import calendar
+import time
 
 
 class CronLine(object):
@@ -23,14 +24,14 @@ class CronLine(object):
         '0': 'zero points'
     }
 
-    def describe_time(self, field, unit) -> str:
+    def describe_time_(self, field, unit) -> str:
         return f"{self.time_descriptions[field]} {unit}"
 
     def describe_minute(self) -> str:
-        return self.describe_time(self.minute, 'minute')
+        return self.describe_time_(self.minute, 'minute')
 
     def describe_hour(self) -> str:
-        return self.describe_time(self.hour, 'hour')
+        return self.describe_time_(self.hour, 'hour')
 
     def describe_month(self) -> str:
         try:
@@ -70,30 +71,43 @@ class CronLine(object):
         if self.is_every_day():
             return ''
         if self.day_of_month == '*' and self.month == '*':
-            return " of " + self.describe_day_of_week()
+            return self.describe_day_of_week()
         if self.day_of_month == '*':
             return ''.join([
-                " of every ",
+                "every ",
                 self.describe_day_of_week(),
                 " in ",
                 self.describe_month()
             ])
         if self.day_of_week == '*':
-            return " of " + self.describe_date()
+            return self.describe_date()
         return ''.join([
-            " of ",
             self.describe_day_of_week(),
             ", ",
             self.describe_date()
         ])
 
+    def describe_time(self) -> str:
+        if self.minute == '*' and self.hour == '*':
+            return self.describe_minute()
+        if self.minute == '*' or self.hour == '*':
+            return ''.join([
+               "on ",
+               self.describe_minute(),
+               " of ",
+               self.describe_hour()
+            ])
+        return "at " + time.strftime(
+            "%H:%M",
+            (0, 1, 2, int(self.hour), int(self.minute), 5, 6, 7, 8)
+        )
+
     def describe(self) -> str:
         return ''.join([
             "Run `",
             self.describe_command(),
-            "` on ",
-            self.describe_minute(),
-            " of ",
-            self.describe_hour(),
+            "` ",
+            self.describe_time(),
+            '' if self.is_every_day() else " ",
             self.describe_days_and_months()
         ])

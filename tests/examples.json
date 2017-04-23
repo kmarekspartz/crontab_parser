@@ -1,9 +1,9 @@
 {
-    "Run `command to run` on the first minute of the first hour of Monday, January 1": "1  1   1  1  1 command to run",
-    "Run `command to run` on the first minute of the first hour of every Monday in January": "1  1   *  1  1 command to run",
-    "Run `command to run` on the first minute of the first hour of Monday, day 1 of every month": "1  1   1  *  1 command to run",
-    "Run `command to run` on the first minute of the first hour of January 1": "1  1   1  1  * command to run",
-    "Run `other command to run` on every minute of every hour": "*  *   *  *  *  other     command   to     run",
-    "Run `printf > /var/log/apache/error_log` on the first minute of zero points hour": "1 0 * * *  printf > /var/log/apache/error_log",
-    "Run `/home/oracle/scripts/export_dump.sh` on not a good approach minute of not at all hour of Saturday": "45 23 * * 6 /home/oracle/scripts/export_dump.sh"
+    "Run `command to run` at 01:01 Monday, January 1": "1  1   1  1  1 command to run",
+    "Run `command to run` at 01:01 every Monday in January": "1  1   *  1  1 command to run",
+    "Run `command to run` at 01:01 Monday, day 1 of every month": "1  1   1  *  1 command to run",
+    "Run `command to run` at 01:01 January 1": "1  1   1  1  * command to run",
+    "Run `other command to run` every minute": "*  *   *  *  *  other     command   to     run",
+    "Run `printf > /var/log/apache/error_log` at 00:01": "1 0 * * *  printf > /var/log/apache/error_log",
+    "Run `/home/oracle/scripts/export_dump.sh` at 23:45 Saturday": "45 23 * * 6 /home/oracle/scripts/export_dump.sh"
 }
