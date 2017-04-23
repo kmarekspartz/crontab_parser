@@ -32,9 +32,6 @@ class CronLine(object):
     def describe_hour(self) -> str:
         return self.describe_time(self.hour, 'hour')
 
-    def describe_day_of_month(self) -> str:
-        return self.describe_time(self.day_of_month, 'day')
-
     def describe_month(self) -> str:
         try:
             month_int = int(self.month)
@@ -45,7 +42,7 @@ class CronLine(object):
     def describe_day_of_week(self) -> str:
         try:
             day_of_week_int = int(self.day_of_week) % 7
-            return calendar.day_name[day_of_week_int - 1] + 's'
+            return calendar.day_name[day_of_week_int - 1]
         except ValueError:
             return 'any day of the week'
 
@@ -56,18 +53,38 @@ class CronLine(object):
             self.day_of_week == '*'
         ])
 
+    def describe_date(self) -> str:
+        if self.month == '*':
+            return ''.join([
+                'day ',
+                self.day_of_month,
+                ' of every month'
+            ])
+        return ''.join([
+            self.describe_month(),
+            " ",
+            self.day_of_month
+        ])
+
     def describe_days_and_months(self) -> str:
         if self.is_every_day():
             return ''
         if self.day_of_month == '*' and self.month == '*':
-            return " on " + self.describe_day_of_week()
+            return " of " + self.describe_day_of_week()
+        if self.day_of_month == '*':
+            return ''.join([
+                " of every ",
+                self.describe_day_of_week(),
+                " in ",
+                self.describe_month()
+            ])
+        if self.day_of_week == '*':
+            return " of " + self.describe_date()
         return ''.join([
             " of ",
-            self.describe_day_of_month(),
-            " of ",
-            self.describe_month(),
-            " on ",
-            self.describe_day_of_week()
+            self.describe_day_of_week(),
+            ", ",
+            self.describe_date()
         ])
 
     def describe(self) -> str:
