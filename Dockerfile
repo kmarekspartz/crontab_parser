@@ -11,6 +11,6 @@ ADD tests/*.py tests/
 RUN flake8 tests
 RUN mypy tests
 ADD tests/examples.json tests
-RUN python -m unittest discover -f
+RUN python -m unittest -f
 ADD *.md ./
 CMD python -m crontab_parser.main
