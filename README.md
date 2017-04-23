@@ -32,3 +32,4 @@ syntax such as:
 - 5#3
 - %
 - Comments
+- Escaping backticks in commands
