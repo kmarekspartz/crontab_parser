@@ -56,7 +56,7 @@ class CronLine(object):
             return ''.join([
                 'day ',
                 self.day_of_month,
-                ' every month'
+                ' of every month'
             ])
         return ''.join([
             self.describe_month(),
